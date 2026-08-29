@@ -1,18 +1,21 @@
 <div align="center">
 
-# redux_ark
+<h1>redux_ark</h1>
 
-**Redux state management for HarmonyOS — written in strict ArkTS.**
+<p><strong>Redux state management for HarmonyOS — written in strict ArkTS.</strong></p>
 
-为 ArkUI 应用提供可预测、可测试、可扩展的单向数据流。
+<p>为 ArkUI 应用提供可预测、可测试、可扩展的单向数据流。</p>
 
 [![Version](https://img.shields.io/badge/version-1.0.0-6f42c1?style=flat-square)](./oh-package.json5)
 [![HarmonyOS](https://img.shields.io/badge/HarmonyOS-6.1.1%2B-e60012?style=flat-square)](https://developer.huawei.com/consumer/cn/)
 [![ArkTS](https://img.shields.io/badge/ArkTS-strict-0a59f7?style=flat-square)](https://developer.huawei.com/consumer/cn/arkts/)
 [![License](https://img.shields.io/github/license/jiancaiFan/redux-ark?style=flat-square)](./LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/jiancaiFan/redux-ark?style=flat-square)](https://github.com/jiancaiFan/redux-ark/stargazers)
+[![Author](https://img.shields.io/badge/author-EricFan-182431?style=flat-square)](https://github.com/jiancaiFan)
 
-[快速开始](#快速开始) · [ArkUI 接入](#arkui-componentv2-接入) · [异步处理](#异步与-sideeffect) · [API](#核心-api) · [设计边界](#设计边界)
+<p><sub>Created and maintained by <a href="https://github.com/jiancaiFan"><strong>EricFan（樊建财）</strong></a></sub></p>
+
+[快速开始](#快速开始) · [ArkUI 接入](#arkui-componentv2-接入) · [异步处理](#异步与-sideeffect) · [API](#核心-api) · [设计边界](#设计边界) · [作者](#作者)
 
 </div>
 
@@ -472,6 +475,41 @@ hvigorw assembleHar \
 
 核心状态管理语义参考 [Redux](https://github.com/reduxjs/redux) `5.0.1`。`redux_ark` 是独立面向 HarmonyOS ArkTS / ArkUI 设计和维护的实现。
 
+## 作者
+
+<table>
+  <tr>
+    <td align="center" width="150">
+      <a href="https://github.com/jiancaiFan">
+        <img src="https://github.com/jiancaiFan.png?size=160" width="96" alt="EricFan（樊建财）" />
+        <br />
+        <strong>EricFan（樊建财）</strong>
+      </a>
+      <br />
+      <sub>Creator &amp; Maintainer</sub>
+    </td>
+    <td>
+      <strong>关于作者</strong>
+      <br /><br />
+      <code>redux_ark</code> 的创建者与主要维护者，负责 HarmonyOS ArkTS 架构设计、Redux Core 行为对齐、API 设计和版本维护。
+      <br /><br />
+      <a href="https://github.com/jiancaiFan">GitHub Profile</a>
+      ·
+      <a href="https://github.com/jiancaiFan/redux-ark/issues">Issues</a>
+    </td>
+  </tr>
+</table>
+
 ## License
 
-[MIT](./LICENSE) © 2026 Eric Fan
+[MIT](./LICENSE) © 2026 EricFan（樊建财）
+
+---
+
+<div align="center">
+
+<p>如果这个项目对你有帮助，欢迎点亮 ⭐ Star，让更多 HarmonyOS 开发者看到它。</p>
+
+<p><strong>Designed &amp; maintained with care by EricFan（樊建财）.</strong></p>
+
+</div>
