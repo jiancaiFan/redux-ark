@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name": "redux_ark",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "car",
+      "2in1"
+    ]
+  }
+}

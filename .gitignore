@@ -1,0 +1,6 @@
+.DS_Store
+.hvigor/
+build/
+node_modules/
+oh_modules/
+
