@@ -99,12 +99,14 @@ Action → Middleware → Reducer → State → Subscriber → ArkUI
 
 ## 快速开始
 
-下面的最小示例展示 Action、State、Reducer、Store 和订阅的完整闭环。
+只需要一个 Action、一个 State 和一个 Reducer，就能建立完整的数据闭环。
 
-### 1. Action 与 State
+### First, create a Store
+
+**`CounterStore.ets`**
 
 ```typescript
-import { Action } from 'redux_ark'
+import { Action, Reducer, Store, createStore } from 'redux_ark'
 
 export class CounterAddAction implements Action<'counter/add'> {
   type: 'counter/add' = 'counter/add'
@@ -122,17 +124,8 @@ export class CounterState {
     this.count = count
   }
 }
-```
 
-### 2. Reducer
-
-Reducer 保持纯函数语义：不执行网络、数据库或定时器操作，也不修改旧 State。
-
-```typescript
-import { Action, Reducer } from 'redux_ark'
-import { CounterAddAction, CounterState } from './CounterModel'
-
-export class CounterReducer implements Reducer<CounterState> {
+class CounterReducer implements Reducer<CounterState> {
   reduce(state: CounterState | undefined, action: Action): CounterState {
     const current = state === undefined ? new CounterState() : state
 
@@ -144,14 +137,6 @@ export class CounterReducer implements Reducer<CounterState> {
     return current
   }
 }
-```
-
-### 3. Store
-
-```typescript
-import { Action, Store, createStore } from 'redux_ark'
-import { CounterReducer } from './CounterReducer'
-import { CounterState } from './CounterModel'
 
 export const counterStore: Store<CounterState, Action> =
   createStore<CounterState, Action>(
@@ -160,12 +145,15 @@ export const counterStore: Store<CounterState, Action> =
   )
 ```
 
-### 4. Dispatch 与订阅
+Reducer 保持纯函数语义：不执行网络、数据库或定时器操作，也不修改旧 State。
+
+### Then, dispatch an Action
+
+**`CounterUsage.ets`**
 
 ```typescript
 import { StoreSubscriber } from 'redux_ark'
-import { CounterAddAction } from './CounterModel'
-import { counterStore } from './CounterStore'
+import { CounterAddAction, counterStore } from './CounterStore'
 
 class CounterSubscriber implements StoreSubscriber {
   onStateChanged(): void {
@@ -180,6 +168,8 @@ counterStore.dispatch(new CounterAddAction(1))
 
 subscription.unsubscribe()
 ```
+
+就是这样。业务增长后，再按 [推荐项目结构](#推荐项目结构) 拆分 Action、State、Reducer、SideEffect 和 ViewModel。
 
 ## 数据流
 
@@ -233,26 +223,14 @@ dispatch(FetchAction)
 
 ## 异步与 SideEffect
 
+Action 工厂负责表达意图，SideEffect 负责异步工作，Reducer 只消费最终结果。
+
+**`CounterSideEffect.ets`**
+
 ```typescript
 import { Action, Dispatch, Middleware, MiddlewareAPI } from 'redux_ark'
-import { CounterState } from './CounterModel'
-
-class CounterFetchAction implements Action<'counter/fetch'> {
-  type: 'counter/fetch' = 'counter/fetch'
-}
-
-class CounterLoadingAction implements Action<'counter/loading'> {
-  type: 'counter/loading' = 'counter/loading'
-}
-
-class CounterLoadAction implements Action<'counter/load'> {
-  type: 'counter/load' = 'counter/load'
-  amount: number
-
-  constructor(amount: number) {
-    this.amount = amount
-  }
-}
+import { CounterAction } from './CounterAction'
+import { CounterState } from './CounterState'
 
 export class CounterSideEffect implements Middleware<CounterState> {
   dispatch(
@@ -263,10 +241,10 @@ export class CounterSideEffect implements Middleware<CounterState> {
     const result = next.dispatch(action)
 
     if (action.type === 'counter/fetch') {
-      store.dispatch(new CounterLoadingAction())
+      store.dispatch(CounterAction.loading())
 
       setTimeout(() => {
-        store.dispatch(new CounterLoadAction(1))
+        store.dispatch(CounterAction.load(1))
       }, 500)
     }
 
@@ -275,10 +253,13 @@ export class CounterSideEffect implements Middleware<CounterState> {
 }
 ```
 
-创建带 Middleware 的 Store：
+**`CounterStoreProvider.ets`**
 
 ```typescript
 import { Action, Store, applyMiddleware, createStore } from 'redux_ark'
+import { CounterReducer } from './CounterReducer'
+import { CounterSideEffect } from './CounterSideEffect'
+import { CounterState } from './CounterState'
 
 const store: Store<CounterState, Action> = createStore<CounterState, Action>(
   new CounterReducer(),
@@ -296,6 +277,8 @@ const store: Store<CounterState, Action> = createStore<CounterState, Action>(
 
 <details>
 <summary><strong>查看 ComponentV2 + ViewModel 示例</strong></summary>
+
+**`CounterViewModel.ets`**
 
 ```typescript
 import {
@@ -335,6 +318,8 @@ export class CounterViewModel implements StoreSubscriber {
   }
 }
 ```
+
+**`Index.ets`**
 
 ```typescript
 import { CounterViewModel } from './CounterViewModel'
@@ -477,28 +462,18 @@ hvigorw assembleHar \
 
 ## 作者
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <a href="https://github.com/jiancaiFan">
-        <img src="https://github.com/jiancaiFan.png?size=160" width="96" alt="EricFan（樊建财）" />
-        <br />
-        <strong>EricFan（樊建财）</strong>
-      </a>
-      <br />
-      <sub>Creator &amp; Maintainer</sub>
-    </td>
-    <td>
-      <strong>关于作者</strong>
-      <br /><br />
-      <code>redux_ark</code> 的创建者与主要维护者，负责 HarmonyOS ArkTS 架构设计、Redux Core 行为对齐、API 设计和版本维护。
-      <br /><br />
-      <a href="https://github.com/jiancaiFan">GitHub Profile</a>
-      ·
-      <a href="https://github.com/jiancaiFan/redux-ark/issues">Issues</a>
-    </td>
-  </tr>
-</table>
+<p>
+  <a href="https://github.com/jiancaiFan">
+    <img src="https://github.com/jiancaiFan.png?size=96" width="56" align="left" alt="EricFan（樊建财）" />
+  </a>
+  <strong>EricFan（樊建财）</strong>
+  <br />
+  <sub>Creator &amp; Maintainer · HarmonyOS / ArkTS</sub>
+  <br />
+  <a href="https://github.com/jiancaiFan">GitHub</a> · <a href="https://github.com/jiancaiFan/redux-ark/issues">Issues</a>
+</p>
+
+<br clear="left" />
 
 ## License
 
@@ -510,6 +485,6 @@ hvigorw assembleHar \
 
 <p>如果这个项目对你有帮助，欢迎点亮 ⭐ Star，让更多 HarmonyOS 开发者看到它。</p>
 
-<p><strong>Designed &amp; maintained with care by EricFan（樊建财）.</strong></p>
+<p><sub>Designed &amp; maintained with care by EricFan（樊建财）.</sub></p>
 
 </div>
