@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Redux state management library designed for HarmonyOS ArkTS and ArkUI.",
   "main": "index.ets",
-  "author": "Manbo",
+  "author": "EricFan",
   "license": "MIT",
   "keywords": [
     "redux",

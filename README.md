@@ -13,7 +13,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/jiancaiFan/redux-ark?style=flat-square)](https://github.com/jiancaiFan/redux-ark/stargazers)
 [![Author](https://img.shields.io/badge/author-EricFan-182431?style=flat-square)](https://github.com/jiancaiFan)
 
-<p><sub>Created and maintained by <a href="https://github.com/jiancaiFan"><strong>EricFan（樊建财）</strong></a></sub></p>
+<p><sub>Created and maintained by <a href="https://github.com/jiancaiFan"><strong>EricFan</strong></a></sub></p>
 
 [快速开始](#快速开始) · [ArkUI 接入](#arkui-componentv2-接入) · [异步处理](#异步与-sideeffect) · [API](#核心-api) · [设计边界](#设计边界) · [作者](#作者)
 
@@ -464,9 +464,9 @@ hvigorw assembleHar \
 
 <p>
   <a href="https://github.com/jiancaiFan">
-    <img src="https://github.com/jiancaiFan.png?size=96" width="56" align="left" alt="EricFan（樊建财）" />
+    <img src="https://github.com/jiancaiFan.png?size=96" width="56" align="left" alt="EricFan" />
   </a>
-  <strong>EricFan（樊建财）</strong>
+  <strong>EricFan</strong>
   <br />
   <sub>Creator &amp; Maintainer · HarmonyOS / ArkTS</sub>
   <br />
@@ -477,7 +477,7 @@ hvigorw assembleHar \
 
 ## License
 
-[MIT](./LICENSE) © 2026 EricFan（樊建财）
+[MIT](./LICENSE) © 2026 EricFan
 
 ---
 
@@ -485,6 +485,6 @@ hvigorw assembleHar \
 
 <p>如果这个项目对你有帮助，欢迎点亮 ⭐ Star，让更多 HarmonyOS 开发者看到它。</p>
 
-<p><sub>Designed &amp; maintained with care by EricFan（樊建财）.</sub></p>
+<p><sub>Designed &amp; maintained with care by EricFan.</sub></p>
 
 </div>
