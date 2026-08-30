@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Redux state management library designed for HarmonyOS ArkTS and ArkUI.",
   "main": "index.ets",
-  "author": "EricFan",
+  "author": {
+    "name": "EricFan",
+    "url": "https://github.com/jiancaiFan"
+  },
+  "repository": "https://github.com/jiancaiFan/redux-ark.git",
   "license": "MIT",
   "keywords": [
     "redux",

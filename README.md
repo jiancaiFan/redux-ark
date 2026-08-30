@@ -50,7 +50,13 @@ Action → Middleware → Reducer → State → Subscriber → ArkUI
 
 ## 安装
 
-目前推荐通过本地源码模块或 HAR 接入。项目尚未发布到 OHPM 公共仓库。
+### OHPM（推荐）
+
+```shell
+ohpm install redux_ark
+```
+
+也可以通过本地源码模块或 HAR 接入。
 
 ### 本地源码模块
 
